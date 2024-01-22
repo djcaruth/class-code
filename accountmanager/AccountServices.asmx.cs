@@ -27,8 +27,16 @@ namespace accountmanager
 		[WebMethod(EnableSession = true)] //NOTICE: gotta enable session on each individual method
 		public bool LogOn(string uid, string pass)
 		{
+
 			//we return this flag to tell them if they logged in or not
 			bool success = false;
+
+			//here we are grabbing that connection string from our web.config file
+			string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+			//here's our query.  A basic select with nothing fancy.
+			string sqlSelect = "SELECT * from accounts";
+
+
 
 			//our connection string comes from our web.config file like we talked about earlier
 			string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
